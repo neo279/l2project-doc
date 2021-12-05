@@ -1,7 +1,7 @@
 {
-  "name": "typdoc-l2p",
+  "name": "L2Project",
   "version": "1.0.0",
-  "description": "",
+  "description": "L2Project Documentation",
   "main": "src/index.ts",
   "directories": {
     "doc": "docs"
