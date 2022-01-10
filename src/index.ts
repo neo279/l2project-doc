@@ -550,12 +550,30 @@ interface IContext {
 
     readonly IsConnected: boolean;
 
+    /**
+     * Returns true if character is controlled by L2Project.
+     * 
+     * **Example**
+     * ```typescript
+     * if (!IsEnabled) EnableBot();
+     * ```
+     */
     readonly IsEnabled: boolean;
 
     readonly IsFollowMaster: boolean;
 
     readonly IsFollowModeOn: boolean;
 
+    /**
+     * Returns true if character is attacking controlled by L2Project.
+     * 
+     * **NOTE:** This does not return true if character is in game combat (attacking mob)!
+     * 
+     * **Example**
+     * ```typescript
+     * if (!IsInCombat) StartCombat();
+     * ```
+     */
     readonly IsInCombat: boolean;
 
     readonly IsInParty: boolean;
@@ -585,8 +603,24 @@ interface IContext {
 
     Confirm(title: string, message: string): void;
 
+    /**
+     * Disable character control by L2Project, this makes L2Project **NOT** active for non-attack actions (buffs, heals, etc.).
+     * 
+     * **Example**
+     * ```typescript
+     * if (IsEnabled) DisableBot();
+     * ```
+     */
     DisableBot(): void;
 
+    /**
+     * Enable character control by L2Project, this makes L2Project active for non-attack actions (buffs, heals, etc.).
+     * 
+     * **Example**
+     * ```typescript
+     * if (!IsEnabled) EnableBot();
+     * ```
+     */
     EnableBot(): void;
 
     Prompt(title: string, message: string, question: string): string;
@@ -601,8 +635,24 @@ interface IContext {
 
     ShowBaloonTip(title: string, message: string, timeout: number): void;
 
+    /**
+     * Enable character control by L2Project, this makes L2Project active for attack actions (combat).
+     * 
+     * **Example**
+     * ```typescript
+     * if (!IsInCombat) StartCombat();
+     * ```
+     */
     StartCombat(): void;
 
+    /**
+     * Enable character control by L2Project, this makes L2Project active for attack actions (combat).
+     * 
+     * **Example**
+     * ```typescript
+     * if (IsInCombat) StopCombat();
+     * ```
+     */
     StopCombat(): void;
 }
 
@@ -694,10 +744,16 @@ declare const CreaturesList: IContext["CreatureList"];
 
 declare const CurrentZone: IContext["CurrentZone"];
 
+/**
+ * See {@link IContext.DisableBot}.
+ */
 declare const DisableBot: IContext["DisableBot"];
 
 declare const DropList: IContext["DropList"];
 
+/**
+ * See {@link IContext.EnableBot}.
+ */
 declare const EnableBot: IContext["EnableBot"];
 
 declare const FollowChar: IContext["FollowChar"];
@@ -708,12 +764,18 @@ declare const IsAttacking: IContext["IsAttacking"];
 
 declare const IsConnected: IContext["IsConnected"];
 
+/**
+ * See {@link IContext.IsEnabled}.
+ */
 declare const IsEnabled: IContext["IsEnabled"];
 
 declare const IsFollowMaster: IContext["IsFollowMaster"];
 
 declare const IsFollowModeOn: IContext["IsFollowModeOn"];
 
+/**
+ * See {@link IContext.IsInCombat}.
+ */
 declare const IsInCombat: IContext["IsInCombat"];
 
 declare const IsInParty: IContext["IsInParty"];
@@ -742,8 +804,14 @@ declare const ShowBaloonTip: IContext["ShowBaloonTip"];
 
 declare const SkillsList: IContext["SkillList"];
 
+/**
+ * See {@link IContext.StartCombat}.
+ */
 declare const StartCombat: IContext["StartCombat"];
 
+/**
+ * See {@link IContext.StopCombat}.
+ */
 declare const StopCombat: IContext["StopCombat"];
 
 declare const Target: IContext["Target"];
