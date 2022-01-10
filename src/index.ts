@@ -147,40 +147,380 @@ interface Point {
 
 }
 
-interface L2Character extends L2Creature {
+interface Point3D {
+    X: number;
+    Y: number;
+    Z: number;
+    Equals(other: Point3D): number;
+    Clone(): Point3D;
+}
 
+interface L2Character extends L2Creature {
+    CP: number;
+    MaxCP: number;
+    isPartyMember: boolean;
+    targetCrt: L2Creature;
+    ClassId: number;
+    ClassName: string;
+    StoreType: L2PrivateStoreType;
+    Clan: L2Clan;
+}
+
+interface L2Entity {
+    _lock: object;
+    Id: number;
+    Name: string;
+    objId: number;
+    X: number;
+    Y: number;
+    Z: number;
+    Point3D: Point3D;
+    Point: Point;
+    Distance: number;
+    zDistance: number;
+    DistanceString: string;
+    PropertyChanged: unknown;
+    ToString(): string;
+    CalculateDistance(): void;
+    CalculateDistance2(): number;
+}
+
+interface L2Clan extends L2Entity {
+    CrestId: number;
+    AllyId: number;
+    AllyCrestId: number;
+    Level: number;
+    AllyName: string;
+}
+
+enum L2GradeTypes {
+    None,
+    D,
+    C,
+    B,
+    A,
+    S,
+    S80,
+    S84
+}
+
+enum L2ElementType {
+    Fire = 0,
+    Water = 1,
+    Wind = 2,
+    Earth = 3,
+    Holy = 4,
+    Unholy = 5,
+    None = 65534
+}
+
+enum L2ClassTypes {
+    MAGE,
+    FIGHTER,
+    SUPPORT,
+    TANK,
+    DAGGER,
+    ARCHER
+}
+
+enum L2PrivateStoreType {
+    NONE = 0,
+    SELL = 1,
+    SELL_MANAGE = 2,
+    BUY = 3,
+    BUY_MANAGE = 4,
+    MANUFACTURE = 5,
+    PACKAGE_SELL = 8
 }
 
 interface L2User extends L2Creature {
-
+    isReady: boolean;
+    isMoving: boolean;
+    DyeList: L2EntityCollection<L2Item>;
+    STR: number;
+    DEX: number;
+    CON: number;
+    INT: number;
+    WIT: number;
+    MEN: number;
+    HennaSTR: number;
+    HennaDEX: number;
+    HennaCON: number;
+    HennaINT: number;
+    HennaWIT: number;
+    HennaMEN: number;
+    PvPKills: number;
+    PKKills: number;
+    Karma: number;
+    AtkElement: L2ElementType;
+    AtkElementPower: number;
+    DefFire: number;
+    DefWater: number;
+    DefWind: number;
+    DefEarth: number;
+    DefHoly: number;
+    DefUnholy: number;
+    RecommLeft: number;
+    RecommHave: number;
+    Fame: number;
+    ClassId: number;
+    ClassType: L2ClassTypes;
+    Vitality: number;
+    IsSitting: boolean;
+    ReviveToFortress: boolean;
+    ReviveToClanHall: boolean;
+    ReviveToCastle: boolean;
+    ReviveToFixed: boolean;
+    ClassName: string;
+    CP: number;
+    MaxCP: number;
+    CPString: string;
+    Exp: number;
+    ExpPercent: number;
+    ExpString: string;
+    SP: number;
+    LastSkillUsed: L2Skill;
+    MaxGauge: number;
+    Gauge: number;
+    IsWaitingAnswer: boolean;
+    StoreType: L2PrivateStoreType;
+    Clan: L2Clan;
+    Pet: L2PartyPet;
+    ExpertiseLevel: L2GradeTypes;
+    CalculatePath(): void;
+    CalculateExpPercents(): number;
 }
 
-interface L2Creature {
+enum L2CreatureType {
+    Char,
+    Npc,
+    Mob,
+    Summon
+}
 
+interface L2Creature extends L2Entity {
+    calcSpeed: number;
+    vector: Vector;
+    time: number;
+    moveCnt: number;
+    ticks: number;
+    RunSpeed: number;
+    WalkSpeed: number;
+    Title: string;
+    HP: number;
+    MP: number;
+    MaxHP: number;
+    MaxMP: number;
+    HPString: string;
+    MPString: string;
+    IsRunning: boolean;
+    Sex: number;
+    HpPercent: number;
+    MpPercent: number;
+    dPoint3D: Point3D;
+    dX: number;
+    dY: number;
+    dZ: number;
+    crtType: L2CreatureType;
+    IsDead: boolean;
+    Speed: number;
+    SpeedMultipl: number;
+    IsInCombat: boolean;
+    IsNoble: boolean;
+    IsHero: boolean;
+    PAtk: number;
+    PAtkSpd: number;
+    PDef: number;
+    EvasionRate: number;
+    Accuracy: number;
+    Crit: number;
+    MAtk: number;
+    MAtkSpd: number;
+    MDef: number;
+    Load: number;
+    MaxLoad: number;
+    LoadString: string;
+    Level: number;
+    CalculatePath(): void;
+    CalculateFollowDistance(): number;
+    CountTargetsInRange(distance: number): number;
+}
+
+enum L2SkillOperateType {
+    A1,
+    A2,
+    A3,
+    A4,
+    CA1,
+    CA5,
+    DA1,
+    DA2,
+    P,
+    T
 }
 
 interface L2Skill {
-
+    reuseDelay: number;
+    alreadyElapsed: number;
+    operType: L2SkillOperateType;
+    IsNeedItem: boolean;
+    ItemId: number;
+    ItemCount: number;
+    elapsed: number;
+    isToggle: boolean;
+    IsActive: boolean;
+    IsNeedTarget: boolean;
+    IsDebuff: boolean;
+    Progress: number;
+    ProgressString: string;
+    Level: number;
+    BaseLevel: number;
+    UsedCount: number;
+    Max: number;
+    ActiveString: string;
+    /**
+     * .NET Framework BitmapImage Class
+     * @see BitmapImage
+     */
+    IconImage: unknown;
+    Tooltip: string;
+    ReuseDelay: number;
+    IsRunning: boolean;
+    IsEnabled: boolean;
+    IsEnchantable: boolean;
+    IsReady: boolean;
+    MP: number;
+    Description: string;
+    EnchantDescription: string;
+    EnchantedWithDescription: string;
+    Range: number;
+    SetInfo(): void;
+    /**
+     * @static
+     */
+    GetEnchantRoute(level: number): number;
+    /**
+     * @static
+     */
+    GetEnchantIndex(level: number): number;
+    /**
+     * @static
+     */
+    GetEnchantType(level: number): number;
+    HaveItems(): boolean;
+    ToString(): string;
 }
 
 interface L2Item {
-
+    Info: string[];
+    Ingredients: L2EntityCollection<L2Item>;
+    Id: number;
+    AttackElementType: L2ElementType;
+    AttackElementVal: number;
+    DefAttFire: number;
+    DefAttWater: number;
+    DefAttWind: number;
+    DefAttEarth: number;
+    DefAttHoly: number;
+    DefAttUnholy: number;
+    AugmentBonus: number;
+    AugmentBonus1: string;
+    AugmentBonus2: string;
+    Count: number;
+    IsEquiped: boolean;
+    IsQuest: boolean;
+    IsCrystalizable: boolean;
+    Price: number;
+    BodyPart: L2BodyPart;
+    /**
+     * .NET Framework BitmapImage Class
+     * @see BitmapImage
+     */
+    IconImage: unknown;
+    Type: L2ItemType;
+    Grade: L2GradeTypes;
+    EnchantLvl: number;
+    Name: string;
+    isCrystalizable: boolean;
+    isStackable: boolean;
+    Tooltip: string;
+    AtkRange: number;
+    MAtk: number;
+    PAtk: number;
+    Clone(newItem: L2Item): void;
+    SetInfo(): void;
+    SetBaseType(): void;
 }
 
 interface L2Buff {
-
+    IsDebuff: boolean;
+    AbnormalType: string;
+    SkillLvl: number;
+    RemainTime: number;
+    RemainString: string;
+    /**
+     * .NET Framework BitmapImage Class
+     * @see BitmapImage
+     */
+    IconImage: unknown;
+    Description: string;
+    SetInfo(): void;
 }
 
 interface L2Macro {
-
+    Id: number;
+    Icon: number;
+    Name: string;
+    Description: string;
+    Acronym: string;
+    Commands: L2MacroCmd[];
+    IsRunning: boolean;
+    PropertyChanged: unknown;
+    ToString(): string;
+    run(): void;
+    stop(): void;
 }
 
-interface L2PartyMember {
-
+enum L2MacroType {
+    NONE,
+    SKILL,
+    ACTION,
+    TEXT,
+    SHORTCUT,
+    ITEM,
+    DELAY
 }
 
-interface L2PartyPet {
+interface L2MacroCmd {
+    Entry: number;
+    Type: L2MacroType;
+    D1: number;
+    D2: number;
+    Command: string;
+}
 
+interface L2PartyMember extends L2Character {
+    Buffs: L2EntityCollection<L2Buff>;
+    HasBuffById(id: number): boolean;
+    HasDebuff(): boolean;
+}
+
+interface L2PartyPet extends L2PartyMember {
+    masterObjId: number;
+    summonType: number;
+    MaxFed: number;
+    CurFed: number;
+    SoulShotsPerHit: number;
+    SpiritShotsPerHit: number;
+    Exp: number;
+    ExpThisLevel: number;
+    ExpNextLevel: number;
+    ExpString: string;
+    SP: number;
+    FoodString: string;
+    DisplayName: string;
+    OwnerName: string;
+    CalculateExpPercents(): number;
 }
 
 interface L2EntityCollection<T> extends ArrayLike<T> {
