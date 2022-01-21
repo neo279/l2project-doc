@@ -159,7 +159,6 @@ interface L2Character extends L2Creature {
     CP: number;
     CPString: string;
     MaxCP: number;
-    isPartyMember: boolean;
     targetCrt: L2Creature;
     ClassId: number;
     ClassName: string;
@@ -169,7 +168,6 @@ interface L2Character extends L2Creature {
 
     Buffs: L2EntityCollection<L2Buff>;
     IsPartyMember: boolean;
-
 }
 
 /**
@@ -177,7 +175,7 @@ interface L2Character extends L2Creature {
  * 
  * @readonly
  */
-interface Event {
+interface Event<T, ArgsT> {
     /**
      * **NOTE:** event listeners are not detached when script stops, you must detach them manually in {@link OnBeforeScriptStop} handler.
      * 
@@ -194,7 +192,7 @@ interface Event {
      * 
      * @readonly
      */
-    connect(listener: () => void): {
+    connect(listener: (target: T, args: ArgsT) => void): {
         /** Detach event listener from the event */
         disconnect(): void
     }
@@ -217,7 +215,7 @@ interface L2Entity {
     /**
      * @see {@link Event.connect}
      */
-    PropertyChanged: Event;
+    PropertyChanged: Event<L2Entity, {PropertyName: string}>;
 
     ToString(): string;
     CalculateDistance(): void;
@@ -764,11 +762,11 @@ interface SendToServer {
 declare const Send: SendToServer;
 
 interface DebugConsole {
-    debug(): void;
-    error(): void;
-    info(): void;
-    log(): void;
-    warn(): void;
+    debug(...args: unknown[]): void;
+    error(...args: unknown[]): void;
+    info(...args: unknown[]): void;
+    log(...args: unknown[]): void;
+    warn(...args: unknown[]): void;
 }
 
 declare const Attack: IContext["Attack"];
@@ -905,21 +903,7 @@ declare function sleep(ms: number): Promise<void>;
  */
 declare let __invoke: (eventName: string, args: unknown[]) => void;
 
-interface console {
-    bin(...args: any[]): void;
-
-    debug(...args: any[]): void;
-
-    error(...args: any[]): void;
-
-    info(...args: any[]): void;
-
-    log(...args: any[]): void;
-
-    trace(...args: any[]): void;
-
-    warn(...args: any[]): void;
-}
+declare const console: DebugConsole;
 
 /**
  * @event

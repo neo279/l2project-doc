@@ -1,0 +1,15 @@
+{
+  "name": "l2project-hello-world",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "tsc --noEmit"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.5.5",
+    "@typescript/lib-dom": "npm:ts-lib-l2project@2.4.4"
+  }
+}

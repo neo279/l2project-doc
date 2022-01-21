@@ -1,0 +1,12 @@
+{
+  "name": "ts-lib-l2project",
+  "version": "2.4.6",
+  "description": "",
+  "main": "lib.l2project.d.ts",
+  "scripts": {
+    "build": "@powershell copy ../src/index.ts lib.l2project.d.ts",
+    "version": "@powershell copy ../src/index.ts lib.l2project.d.ts"
+  },
+  "author": "",
+  "license": "ISC"
+}
