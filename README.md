@@ -1,3 +1,7 @@
+# Welcome to L2Project Documentation
+
+Documentation wanted! Join us on [GitHub](https://github.com/neo279/l2project-doc)!
+
 ## About L2Project Script Engine
 
 L2Project uses plain [V8](https://v8.dev/) - JavaScript engine provided by [ClearScript](https://github.com/microsoft/ClearScript), V8 is widely used JavaScript engine by Chrome Web Brower and Node.JS platform.
@@ -7,6 +11,10 @@ As L2Project is only using V8, many things that are common to web browsers or No
 You can expect [ECMAScript](https://tc39.es/ecma262/) to work flawlessly.
 
 JavaScript really fits well for scripting L2 and better, you can even write scripts using [TypeScript](https://www.typescriptlang.org/), you can write tests for your scripts, you can run different preprocessors on your code. Whole world of [npm](https://www.npmjs.com/) packages is available to you (not all of them will work).
+
+### Using TypeScript and L2Project Type definitions
+
+See [examples/typescript](examples/typescript).
 
 ### Using TypeScript and ESBuild for writting scripts
 

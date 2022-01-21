@@ -1,18 +1,22 @@
 {
-  "name": "L2Project",
-  "version": "1.0.0",
+  "name": "l2project-doc",
+  "version": "2.4.1",
   "description": "L2Project Documentation",
   "main": "src/index.ts",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "typedoc --name \"L2Project Documentation\" --includeVersion --hideGenerator src/index.ts"
   },
-  "author": "",
+  "author": "neo@0xbb.pw",
   "license": "ISC",
   "devDependencies": {
     "typedoc": "^0.22.10",
     "typescript": "^4.5.2"
-  }
+  },
+  "private": true,
+  "homepage": "https://neo279.github.io/l2project-doc/",
+  "repository": "github:neo279/l2project-doc"
 }
