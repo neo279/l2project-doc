@@ -157,13 +157,19 @@ interface Point3D {
 
 interface L2Character extends L2Creature {
     CP: number;
+    CPString: string;
     MaxCP: number;
     isPartyMember: boolean;
     targetCrt: L2Creature;
     ClassId: number;
     ClassName: string;
+    ClassType: L2ClassTypes;
     StoreType: L2PrivateStoreType;
     Clan: L2Clan;
+
+    Buffs: L2EntityCollection<L2Buff>;
+    IsPartyMember: boolean;
+
 }
 
 /**
@@ -531,9 +537,6 @@ interface L2MacroCmd {
 }
 
 interface L2PartyMember extends L2Character {
-    Buffs: L2EntityCollection<L2Buff>;
-    HasBuffById(id: number): boolean;
-    HasDebuff(): boolean;
 }
 
 interface L2PartyPet extends L2PartyMember {
