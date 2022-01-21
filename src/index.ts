@@ -908,151 +908,151 @@ declare const console: DebugConsole;
 /**
  * @event
  */
-let OnLogin: () => void;
+declare var OnLogin: () => void;
 /**
  * @event
  */
-let OnLogout: () => void;
+declare var OnLogout: () => void;
 /**
  * @event
  */
-let OnAttack: (attackerObjId: number, objId: number, isAOE: boolean) => void;
+declare var OnAttack: (attackerObjId: number, objId: number, isAOE: boolean) => void;
 /**
  * @event
  */
-let OnAutoAttackStart: (objId: number) => void;
+declare var OnAutoAttackStart: (objId: number) => void;
 /**
  * @event
  */
-let OnAutoAttackStop: (objId: number) => void;
+declare var OnAutoAttackStop: (objId: number) => void;
 /**
  * @event
  */
-let OnNpcHtmlMessage: (html: string) => void;
+declare var OnNpcHtmlMessage: (html: string) => void;
 /**
  * @event
  */
-let OnCommunityBoardHtmlMessage: (html: string) => void;
+declare var OnCommunityBoardHtmlMessage: (html: string) => void;
 /**
  * @event
  */
-let OnDie: (objId: number) => void;
+declare var OnDie: (objId: number) => void;
 /**
  * @event
  */
-let OnRevive: (objId: number) => void;
+declare var OnRevive: (objId: number) => void;
 /**
  * @event
  */
-let OnSpawnItem: (objId: number) => void;
+declare var OnSpawnItem: (objId: number) => void;
 /**
  * @event
  */
-let OnDeleteObject: (objId: number) => void;
+declare var OnDeleteObject: (objId: number) => void;
 /**
  * @event
  */
-let OnDropItem: (objId: number) => void;
+declare var OnDropItem: (objId: number) => void;
 /**
  * @event
  */
-let OnGetItem: (itemId: number, playerId: number) => void;
+declare var OnGetItem: (itemId: number, playerId: number) => void;
 /**
  * @event
  */
-let OnTeleportToLocation: (objId: number, X: number, Y: number, Z: number) => void;
+declare var OnTeleportToLocation: (objId: number, X: number, Y: number, Z: number) => void;
 /**
  * @event
  */
-let OnTargetSelected: (objId: number, targetObjId: number) => void;
+declare var OnTargetSelected: (objId: number, targetObjId: number) => void;
 /**
  * @event
  */
-let OnTargetUnselected: (targetObjId: number) => void;
+declare var OnTargetUnselected: (targetObjId: number) => void;
 /**
  * @event
  */
-let OnMyTargetSelected: (objId: number) => void;
+declare var OnMyTargetSelected: (objId: number) => void;
 /**
  * @event
  */
-let OnMove: (num: number, X: number, Y: number, Z: number, dX: number, dY: number, dZ: number) => void;
+declare var OnMove: (num: number, X: number, Y: number, Z: number, dX: number, dY: number, dZ: number) => void;
 /**
  * @event
  */
-let OnMoveStop: (num: number, X: number, Y: number, Z: number) => void;
+declare var OnMoveStop: (num: number, X: number, Y: number, Z: number) => void;
 /**
  * @event
  */
-let OnChangeMoveType: (objId: number, moveType: number) => void;
+declare var OnChangeMoveType: (objId: number, moveType: number) => void;
 /**
  * @event
  */
-let OnChangeWaitType: (objId: number, waitType: number) => void;
+declare var OnChangeWaitType: (objId: number, waitType: number) => void;
 /**
  * @event
  */
-let OnSkillList: (skillList: L2EntityCollection<L2Skill>) => void;
+declare var OnSkillList: (skillList: L2EntityCollection<L2Skill>) => void;
 /**
  * @event
  */
-let OnMagicSkillUse: (objId: number, targetId: number, skillId: number) => void;
+declare var OnMagicSkillUse: (objId: number, targetId: number, skillId: number) => void;
 /**
  * @event
  */
-let OnInventoryUpdate: () => void;
+declare var OnInventoryUpdate: () => void;
 /**
  * @event
  */
-let OnInventoryItemUpdate: (action: number, objId: number) => void;
+declare var OnInventoryItemUpdate: (action: number, objId: number) => void;
 /**
  * @event
  */
-let OnIncomingPacket: (packet: number[]) => void;
+declare var OnIncomingPacket: (packet: number[]) => void;
 /**
  * @event
  */
-let OnSystemMessage: (id: number) => void;
+declare var OnSystemMessage: (id: number) => void;
 /**
  * @event
  */
-let OnNpcSay: (msgId: number, msg: string) => void;
+declare var OnNpcSay: (msgId: number, msg: string) => void;
 /**
  * @event
  */
-let OnSay: (charName: string, text: string, messageType: number) => void;
+declare var OnSay: (charName: string, text: string, messageType: number) => void;
 /**
  * @event
  */
-let OnPointsEnded: () => void;
+declare var OnPointsEnded: () => void;
 /**
  * @event
  */
-let OnPointsStarted: () => void;
+declare var OnPointsStarted: () => void;
 /**
  * @event
  */
-let OnPointsStopped: () => void;
+declare var OnPointsStopped: () => void;
 /**
  * @event
  */
-let OnPointsNext: (X: number, Y: number, Z: number) => void;
+declare var OnPointsNext: (X: number, Y: number, Z: number) => void;
 /**
  * @event
  */
-let OnWareHouseDepositList: (itemsList: L2EntityCollection<L2Item>) => void;
+declare var OnWareHouseDepositList: (itemsList: L2EntityCollection<L2Item>) => void;
 /**
  * @event
  */
-let OnWareHouseWithdrawalList: (itemsList: L2EntityCollection<L2Item>) => void;
+declare var OnWareHouseWithdrawalList: (itemsList: L2EntityCollection<L2Item>) => void;
 /**
  * @event
  */
-let OnShopList: (shopId: number, itemsList: L2EntityCollection<L2Item>) => void;
+declare var OnShopList: (shopId: number, itemsList: L2EntityCollection<L2Item>) => void;
 /**
  * @event
  */
-let OnTrade: (traderObjId: number, itemsList: L2EntityCollection<L2Item>) => void;
+declare var OnTrade: (traderObjId: number, itemsList: L2EntityCollection<L2Item>) => void;
 
 /**
  * .NET Framework Host class (System.Windows.Window)
@@ -1066,39 +1066,39 @@ interface BotWindow {
 /**
  * @event
  */
-let OnWindowOpenWarehouse: (windowHandle: BotWindow) => void;
+declare var OnWindowOpenWarehouse: (windowHandle: BotWindow) => void;
 /**
  * @event
  */
-let OnWindowOpenTrade: (windowHandle: BotWindow) => void;
+declare var OnWindowOpenTrade: (windowHandle: BotWindow) => void;
 /**
  * @event
  */
-let OnWindowOpenStore: (windowHandle: BotWindow) => void;
+declare var OnWindowOpenStore: (windowHandle: BotWindow) => void;
 /**
  * @event
  */
-let OnWindowOpenShop: (windowHandle: BotWindow) => void;
+declare var OnWindowOpenShop: (windowHandle: BotWindow) => void;
 /**
  * @event
  */
-let OnWindowOpenSendMail: (windowHandle: BotWindow) => void;
+declare var OnWindowOpenSendMail: (windowHandle: BotWindow) => void;
 /**
  * @event
  */
-let OnWindowOpenRecipeBook: (windowHandle: BotWindow) => void;
+declare var OnWindowOpenRecipeBook: (windowHandle: BotWindow) => void;
 /**
  * @event
  */
-let OnWindowOpenPrivateStore: (windowHandle: BotWindow) => void;
+declare var OnWindowOpenPrivateStore: (windowHandle: BotWindow) => void;
 /**
  * @event
  */
-let OnWindowOpenPlayerStore: (windowHandle: BotWindow) => void;
+declare var OnWindowOpenPlayerStore: (windowHandle: BotWindow) => void;
 /**
  * @event
  */
-let OnWindowOpenNpcDialog: (windowHandle: BotWindow) => void;
+declare var OnWindowOpenNpcDialog: (windowHandle: BotWindow) => void;
 
 
 /**
@@ -1117,4 +1117,4 @@ let OnWindowOpenNpcDialog: (windowHandle: BotWindow) => void;
  * 
  * @event
  */
-let OnBeforeScriptStop: () => void;
+declare var OnBeforeScriptStop: () => void;
