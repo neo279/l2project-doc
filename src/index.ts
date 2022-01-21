@@ -166,6 +166,34 @@ interface L2Character extends L2Creature {
     Clan: L2Clan;
 }
 
+/**
+ * Event class automapped by [ClearScript](https://microsoft.github.io/ClearScript/Tutorial/FAQtorial) (see 16.)
+ * 
+ * @readonly
+ */
+interface Event {
+    /**
+     * **NOTE:** event listeners are not detached when script stops, you must detach them manually in {@link OnBeforeScriptStop} handler.
+     * 
+     * **Example:**
+     * ```typescript
+     * const connect = Me.PropertyChanged.connect((target, args) => {
+     *   console.log(args.PropertyName)
+     * })
+     * 
+     * globalThis.OnBeforeScriptStop = () => {
+     *   connect.disconnect();
+     * }
+     * ```
+     * 
+     * @readonly
+     */
+    connect(listener: () => void): {
+        /** Detach event listener from the event */
+        disconnect(): void
+    }
+}
+
 interface L2Entity {
     _lock: object;
     Id: number;
@@ -179,7 +207,12 @@ interface L2Entity {
     Distance: number;
     zDistance: number;
     DistanceString: string;
-    PropertyChanged: unknown;
+
+    /**
+     * @see {@link Event.connect}
+     */
+    PropertyChanged: Event;
+
     ToString(): string;
     CalculateDistance(): void;
     CalculateDistance2(): number;
@@ -913,6 +946,10 @@ let OnNpcHtmlMessage: (html: string) => void;
 /**
  * @event
  */
+let OnCommunityBoardHtmlMessage: (html: string) => void;
+/**
+ * @event
+ */
 let OnDie: (objId: number) => void;
 /**
  * @event
@@ -957,7 +994,7 @@ let OnMove: (num: number, X: number, Y: number, Z: number, dX: number, dY: numbe
 /**
  * @event
  */
-let OnStopMove: (num: number, X: number, Y: number, Z: number) => void;
+let OnMoveStop: (num: number, X: number, Y: number, Z: number) => void;
 /**
  * @event
  */
@@ -1030,3 +1067,68 @@ let OnShopList: (shopId: number, itemsList: L2EntityCollection<L2Item>) => void;
  * @event
  */
 let OnTrade: (traderObjId: number, itemsList: L2EntityCollection<L2Item>) => void;
+
+/**
+ * .NET Framework Host class (System.Windows.Window)
+ * @readonly
+ * @see https://docs.microsoft.com/en-us/dotnet/api/system.windows.window?view=netframework-4.5.2
+ */
+interface BotWindow {
+    Close(): void;
+}
+
+/**
+ * @event
+ */
+let OnWindowOpenWarehouse: (windowHandle: BotWindow) => void;
+/**
+ * @event
+ */
+let OnWindowOpenTrade: (windowHandle: BotWindow) => void;
+/**
+ * @event
+ */
+let OnWindowOpenStore: (windowHandle: BotWindow) => void;
+/**
+ * @event
+ */
+let OnWindowOpenShop: (windowHandle: BotWindow) => void;
+/**
+ * @event
+ */
+let OnWindowOpenSendMail: (windowHandle: BotWindow) => void;
+/**
+ * @event
+ */
+let OnWindowOpenRecipeBook: (windowHandle: BotWindow) => void;
+/**
+ * @event
+ */
+let OnWindowOpenPrivateStore: (windowHandle: BotWindow) => void;
+/**
+ * @event
+ */
+let OnWindowOpenPlayerStore: (windowHandle: BotWindow) => void;
+/**
+ * @event
+ */
+let OnWindowOpenNpcDialog: (windowHandle: BotWindow) => void;
+
+
+/**
+ * Useful for cleaning up resources when stopping the script
+ * 
+ * **Example**
+ * ```typescript
+ * const connect = Me.PropertyChanged.connect((target, args) => {
+ *   console.log(args.PropertyName)
+ * })
+ * 
+ * globalThis.OnBeforeScriptStop = () => {
+ *   connect.disconnect();
+ * }
+ * ```
+ * 
+ * @event
+ */
+let OnBeforeScriptStop: () => void;
