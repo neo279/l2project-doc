@@ -266,9 +266,9 @@ enum L2PrivateStoreType {
     PACKAGE_SELL = 8
 }
 
-interface L2User extends L2Creature {
-    isReady: boolean;
-    isMoving: boolean;
+interface L2User extends L2Character {
+    IsReady: boolean;
+    IsMoving: boolean;
     DyeList: L2EntityCollection<L2Item>;
     STR: number;
     DEX: number;
@@ -296,8 +296,6 @@ interface L2User extends L2Creature {
     RecommLeft: number;
     RecommHave: number;
     Fame: number;
-    ClassId: number;
-    ClassType: L2ClassTypes;
     Vitality: number;
     IsSitting: boolean;
     ReviveToFortress: boolean;
@@ -320,6 +318,7 @@ interface L2User extends L2Creature {
     Clan: L2Clan;
     Pet: L2PartyPet;
     ExpertiseLevel: L2GradeTypes;
+    Weapon: L2Item;
     CalculatePath(): void;
     CalculateExpPercents(): number;
 }
@@ -474,8 +473,7 @@ interface L2Item {
     Grade: L2GradeTypes;
     EnchantLvl: number;
     Name: string;
-    isCrystalizable: boolean;
-    isStackable: boolean;
+    IsStackable: boolean;
     Tooltip: string;
     AtkRange: number;
     MAtk: number;
@@ -747,6 +745,7 @@ interface SendToServer {
     RequestTargetCancel(): void;
     Say2(channelType: number, target: string, message: string, unk1: boolean): void;
     SendHex(data: string): void;
+    SendRaw(data: Uint8Array): void;
     StopMove(): void;
     UseItem(objectId: number): void;
 }
@@ -970,7 +969,7 @@ let OnDropItem: (objId: number) => void;
 /**
  * @event
  */
-let OnGetItem: (itemId: number) => void;
+let OnGetItem: (itemId: number, playerId: number) => void;
 /**
  * @event
  */
