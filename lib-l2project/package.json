@@ -1,6 +1,6 @@
 {
   "name": "ts-lib-l2project",
-  "version": "2.4.7",
+  "version": "2.4.8",
   "description": "",
   "main": "lib.l2project.d.ts",
   "scripts": {

@@ -52,7 +52,7 @@ enum InputType {
     Password
 }
 
-enum L2ZoneType {
+enum L2ZoneTypes {
 	ALTEREDZONE = 8,
     SIEGEWARZONE1 = 10,
     SIEGEWARZONE2 = 11,
@@ -93,7 +93,7 @@ enum L2BodyPart {
     MULTI_ALLWEAPON = 16512
 }
 
-enum L2Shots {
+enum L2ShotsTypes {
     // [Description("SoulShot: No-Grade")]
 	SSNG = 1835,
     // [Description("SoulShot: D-Grade")]
@@ -122,7 +122,7 @@ enum L2Shots {
 	SSNGB = 5789
 }
 
-enum L2BeastShots {
+enum L2BeastShotsTypes {
     // [Description("Beast Shoulshot")]
 	SS = 6645,
     // [Description("Beast Spiritshot")]
@@ -131,11 +131,19 @@ enum L2BeastShots {
     BSPS
 }
 
-interface L2Element {
+enum L2ElementTypes {
 
 }
 
-interface L2ItemType {
+enum L2ItemTypes {
+
+}
+
+enum L2ClassTypes {
+
+}
+
+enum L2GradeTypes {
 
 }
 
@@ -473,7 +481,7 @@ interface L2Item {
      * @see BitmapImage
      */
     IconImage: unknown;
-    Type: L2ItemType;
+    Type: L2ItemTypes;
     Grade: L2GradeTypes;
     EnchantLvl: number;
     Name: string;
@@ -487,10 +495,10 @@ interface L2Item {
     SetBaseType(): void;
 }
 
-interface L2Buff {
+interface L2Buff extends L2Entity {
     IsDebuff: boolean;
     AbnormalType: string;
-    SkillLvl: number;
+    Level: number;
     RemainTime: number;
     RemainString: string;
     /**
@@ -574,7 +582,7 @@ interface L2PartyPetCollection extends L2EntityCollection<L2PartyPet> {
 }
 
 interface IContext {
-    readonly CurrentZone: L2ZoneType;
+    readonly CurrentZone: L2ZoneTypes;
 
     readonly FollowChar: L2Character;
 
