@@ -132,7 +132,13 @@ enum L2BeastShotsTypes {
 }
 
 enum L2ElementTypes {
-
+    Fire = 0,
+    Water = 1,
+    Wind = 2,
+    Earth = 3,
+    Holy = 4,
+    Unholy = 5,
+    None = 65534
 }
 
 enum L2ItemTypes {
@@ -249,16 +255,6 @@ enum L2GradeTypes {
     S84
 }
 
-enum L2ElementType {
-    Fire = 0,
-    Water = 1,
-    Wind = 2,
-    Earth = 3,
-    Holy = 4,
-    Unholy = 5,
-    None = 65534
-}
-
 enum L2ClassTypes {
     MAGE,
     FIGHTER,
@@ -297,7 +293,7 @@ interface L2User extends L2Character {
     PvPKills: number;
     PKKills: number;
     Karma: number;
-    AtkElement: L2ElementType;
+    AtkElement: L2ElementTypes;
     AtkElementPower: number;
     DefFire: number;
     DefWater: number;
@@ -459,7 +455,7 @@ interface L2Item {
     Info: string[];
     Ingredients: L2EntityCollection<L2Item>;
     Id: number;
-    AttackElementType: L2ElementType;
+    AttackElementType: L2ElementTypes;
     AttackElementVal: number;
     DefAttFire: number;
     DefAttWater: number;
@@ -582,6 +578,19 @@ interface L2PartyPetCollection extends L2EntityCollection<L2PartyPet> {
 }
 
 interface IContext {
+
+    /**
+     * **Example**
+     * ```javascript
+     * let List = Context.host.type('System.Collections.Generic.List');
+     * let DayOfWeek = Context.host.type('System.DayOfWeek');
+     * let week = Context.host.newObj(List(DayOfWeek), 7);
+     * week.Add(DayOfWeek.Sunday);
+     * ```
+     * @see https://microsoft.github.io/ClearScript/Reference/html/T_Microsoft_ClearScript_ExtendedHostFunctions.htm
+     */
+    readonly host: any;
+
     readonly CurrentZone: L2ZoneTypes;
 
     readonly FollowChar: L2Character;
@@ -857,6 +866,11 @@ declare const StopCombat: IContext["StopCombat"];
 
 declare const Target: IContext["Target"];
 
+/**
+ * Dispatch a callback within the current UI thread context
+ */
+declare function Dispatch(callback: () => void): void;
+
 declare function Say(text: any): ReturnType<SendToServer["Say2"]>;
 
 declare function SayToAlly(text: any): ReturnType<SendToServer["Say2"]>;
@@ -903,13 +917,6 @@ declare function setTimeout(callback: any, ms: any): any;
  * @param ms Amount of miliseconds to sleep for.
  */
 declare function sleep(ms: number): Promise<void>;
-
-/**
- * Dispatcher for events, can be overriden to use different way of triggering events.
- * 
- * When changed all On* methods will stop working.
- */
-declare let __invoke: (eventName: string, args: unknown[]) => void;
 
 declare const console: DebugConsole;
 
